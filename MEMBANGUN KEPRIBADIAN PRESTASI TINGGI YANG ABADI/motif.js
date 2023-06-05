@@ -26,7 +26,7 @@ let mo = motif
 	let whmax = 2222
 	let ttadi = 0
 	
-	let batasframe = [0,222,888,]//hlm
+	let batasframe = [0,100,300,]//hlm
 	let frame = 0
 	let kehlm = 0
 	
@@ -117,6 +117,7 @@ let mo = motif
 			frame = batasframe[(kehlm > 0)?--kehlm:kehlm]
 		}
 	},)
+	let fade = x=>Math.tanh(x)/2+.5
 	
 	//lihat
 	mo.lihat = ()=>[frame,kehlm,matcam[4],matcam[5],]
@@ -139,11 +140,16 @@ let mo = motif
 					switch(kehlm){
 						case 0:
 						case 1:
+							/*
 							let fini = -22+frame/4
 							x = 0
 							y = -1411+Math.atan(fini)*777
 							scale = .9-Math.atan(frame*.7-99)/5
 							//lih(y)
+							*/
+							x = 0
+							y = -2500+fade((frame-50)/11)*2300
+							scale = 1-fade((frame-75)/7)*.4
 						break
 					}
 					m2d.translate(matcam,matcam,[x,y,],)
@@ -193,7 +199,7 @@ let mo = motif
 					)
 					cx.textAlign = 'center'
 					cx.font = '99px Consolas'
-					cx.fillText('MOTIVASI',0,-2596,)
+					cx.fillText('MOTIVASI',0,-2500,)
 					
 					//tanah
 					cx.fillStyle = 'grey'
@@ -362,6 +368,11 @@ let mo = motif
 		let m = titik.matlok
 		m2d.translate(m,m,titik_target,)
 	}
+	
+	alert(`
+Klik untuk lanjutkan animasi
+Keyboard kanan kiri untuk pindah slide tanpa animasi
+`	)
 	
 	requestAnimationFrame(lukis)
 }
