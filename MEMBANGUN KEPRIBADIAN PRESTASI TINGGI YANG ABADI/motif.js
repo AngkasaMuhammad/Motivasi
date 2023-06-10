@@ -198,7 +198,7 @@ let mo = motif
 						case 7:
 							r = (frame-batasframe[6])/(-batasframe[6]+batasframe[7])
 							x = 2331
-							y = -9600-fade((r-.5)*5)*999
+							y = -9600-fade((r-.5)*5)*777
 							scale = 1.1
 						break
 					}
@@ -463,11 +463,11 @@ let mo = motif
 						cx.fillStyle = 'white'
 						cx.font = '111px Consolas'
 						cx.textAlign = 'center'
-						cx.fillText('TERIMA KASIH',0,-999,)
+						cx.fillText('TERIMA KASIH',0,-777,)
 						for(let naA = 0;naA < 7;naA++){
 							cx.fillRect(
 								0	+mop*(Math.random()-.5)	,
-								-999	+mot*(Math.random()-.5)	,
+								-777	+mot*(Math.random()-.5)	,
 							11,11,)
 						}
 						return

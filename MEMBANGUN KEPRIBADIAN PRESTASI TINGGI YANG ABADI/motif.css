@@ -15,3 +15,6 @@ canvas{
 	height:100%;
 	/*image-rendering: pixelated;*/
 }
+.svghilang svg{
+	display:none;
+}
