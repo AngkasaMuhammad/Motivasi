@@ -1161,7 +1161,7 @@ let mo = motif
 		bintang.j = Math.random()*222+4//jarak
 		m = bintang.matlok
 		m2d.translate(m,m,[2664,-771.8,],)
-		m2d.rotate(m,m,Math.random()*4,)
+		m2d.rotate(m,m,Math.random()*7,)
 	}
 	
 	alert(`
