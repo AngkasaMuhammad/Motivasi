@@ -27,7 +27,10 @@ let mo = motif
 	let whmax = 2222
 	let ttadi = 0
 	
-	let batasframe = [0,100,500,900,950,1000,1100,1200,]//hlm
+	let batasframe = [//frame hlm
+		0	,100	,500	,900	,950	,
+		1000	,1100	,1200	,1400	,1500	,
+	]
 	let frame = 0
 	let kehlm = 0
 	
@@ -200,6 +203,18 @@ let mo = motif
 							x = 2331
 							y = -9600-fade((r-.5)*5)*777
 							scale = 1.1
+						break
+						case 8:
+							r = (frame-batasframe[7])/(-batasframe[7]+batasframe[8])
+							x = 2331
+							y = -10371.8
+							scale = 1.1-1*fade((r-.5)*8)
+						break
+						case 9:
+							r = (frame-batasframe[8])/(-batasframe[8]+batasframe[9])
+							x = 2331
+							y = -10371.8
+							scale = .1-.099*fade((r-.5)*8)
 						break
 					}
 					m2d.translate(matcam,matcam,[x,y,],)
@@ -438,8 +453,70 @@ let mo = motif
 			switch(e){
 				case 'tampil':
 					if(frame < batasframe[2]+300){break}
-					cx.fillStyle = 'white'
+					let x,y,r,grd
+					
+					//sinar luar blackhole
 					cx.beginPath()
+					x = 2664
+					y = -771.8
+					r = 999
+					grd = cx.fillStyle = cx.createRadialGradient(x,y,.4,x,y,r,)
+					grd.addColorStop(0,ru.rgba(255,255,0,matcam[0],),)
+					grd.addColorStop(.021,ru.rgba(55,50,0,matcam[0],),)
+					grd.addColorStop(.8,'#88660011',)
+					grd.addColorStop(1,'#66330000',)
+					cx.ellipse(
+						x	,
+						y	,
+						r,r	,
+					0,0,359.99,)
+					cx.fill()
+					
+					//blackhole
+					cx.beginPath()
+					r = ru.lihat.a??1.7
+					grd = cx.fillStyle = cx.createRadialGradient(x,y,.4,x,y,r,)
+					grd.addColorStop(0,'#ff990000',)
+					grd.addColorStop(.1,'#ff9900',)
+					grd.addColorStop(1,'#ff990000',)
+					cx.ellipse(
+						x	,
+						y	,
+						r,r	,
+					0,0,359.99,)
+					cx.fill()
+					
+					//m87 jet0
+					cx.fillStyle = grd = cx.createLinearGradient(x,y,x+222,y+222,)
+					grd.addColorStop(0,'#0055ff00',)	;grd.addColorStop(.01,'white',)
+					grd.addColorStop(.015,'#0055ff00',)	;grd.addColorStop(.018,'white',)
+					grd.addColorStop(.1,'#0055ff00',)	;grd.addColorStop(.15,'white',)
+					grd.addColorStop(.2,'#0055ff00',)	;grd.addColorStop(.5,'white',)
+					grd.addColorStop(.3,'#0055ff00',)	;grd.addColorStop(.4,'white',)
+					grd.addColorStop(.6,'#0055ff00',)	;grd.addColorStop(.7,'#0055ff44',)	;grd.addColorStop(.8,'white',)
+					grd.addColorStop(.9,'#0055ff33',)
+					grd.addColorStop(1,'#0055ff00',)
+					cx.beginPath()
+					cx.moveTo(x	,y	,)
+					cx.lineTo(x+222-6	,y+222+6	,)
+					cx.lineTo(x+222+6	,y+222-6	,)
+					cx.fill()
+					
+					//m87 jet1
+					cx.fillStyle = grd = cx.createLinearGradient(x+9,y,x,y+9,)
+					grd.addColorStop(0,'#0055ff00',)
+					grd.addColorStop(.4,'#ffffff55',)
+					grd.addColorStop(.6,'#ffffff55',)
+					grd.addColorStop(1,'#0055ff00',)
+					cx.beginPath()
+					cx.moveTo(x+11	,y+11	,)
+					cx.lineTo(x+188-11	,y+188+11	,)
+					cx.lineTo(x+188+11	,y+188-11	,)
+					cx.fill()
+					
+					//planet putih
+					cx.beginPath()
+					cx.fillStyle = 'white'
 					cx.ellipse(0,0,333,333,0,0,359.99,)
 					cx.fill()
 				break
@@ -459,17 +536,114 @@ let mo = motif
 					let m = o.matlok
 				break
 				case 'tampil':
-					if(batasframe[6] < frame){
-						cx.fillStyle = 'white'
-						cx.font = '111px Consolas'
+					if(
+						(batasframe[6] < frame) &&
+						(frame <= batasframe[7])
+					){
+						/*
+						cx.fillStyle = '#00000077'
+						cx.fillRect(
+							0-	mop	,-800-	mot	,
+								mop*2	,	mot*2	,
+						)
+						*/
 						cx.textAlign = 'center'
-						cx.fillText('TERIMA KASIH',0,-777,)
+						cx.fillStyle = 'white'	;cx.font = '48px Impact'	;cx.fillText('ALUR POLA PIKIR DAN TINGKAH LAKU MANUSIA'	,0,-1111,)
+						cx.fillStyle = 'yellow'	;cx.font = '33px Magneto'	;cx.fillText('SIKON'	,-555	,-677-55,)
+						cx.fillStyle = 'cyan'	;cx.font = '33px Verdana'	;cx.fillText('KEBUTUHAN'	,-222	,-899-55,)
+							;	;cx.fillText('DORONGAN'	,-222	,-788-55,)
+							;	;cx.fillText('MOTIF'	,-222	,-677-55,)
+							;	;cx.fillText('TINGKAH LAKU'	,-222	,-566-55,)
+						cx.fillStyle = ru.rgba(Math.random()*100+155,255,Math.random()*100+155,1,)	;cx.font = (Math.random()*11+33)+'px Impact'	;cx.fillText('GOAL'	,-222	,-455-55,)
+						cx.fillStyle = '#00ff00'	;cx.font = '33px Consolas'	;cx.fillText('KEPRIBADIAN'	,111	,-566-55,)
+							;	;cx.fillText('BUDAYA'	,444	,-566-55,)
+						cx.textAlign = 'left'
+						cx.fillStyle = '#ff9999'	;cx.font = '33px Consolas'	;cx.fillText('BERSAHABAT'	,111	,-677-88,)
+							;	;cx.fillText('BERKUASA'	,111	,-677-55,)
+							;	;cx.fillText('BERPRESTASI'	,111	,-677-22,)
+						cx.beginPath()
+						cx.fillStyle = ru.rgba((Math.sin(mousex*.07)+.5)*255,mousey*.4,255,1,)
+						cx.save()
+							cx.transform(1,0,0,-1.4,-222,-1055,)
+							cx.transform(1,0,0,1,0,-80,)	;cx.fill(panah.panah)
+							cx.transform(1,0,0,1,0,-80,)	;cx.fill(panah.panah)
+							cx.transform(1,0,0,1,0,-80,)	;cx.fill(panah.panah)
+							cx.transform(1,0,0,1,0,-80,)	;cx.fill(panah.panah)
+						cx.restore()
+						cx.fillStyle = '#55ff99'
+						cx.save()
+							cx.transform(0,-1,-2,0,-44,-744,)	;cx.fill(panah.panah)
+						cx.restore()
+						cx.fillStyle = '#5599ff'
+						cx.save()
+							cx.transform(0,-1,-1,0,-55,-633,)	;cx.fill(panah.panah)
+							cx.transform(1,0,0,1,0,-333,)	;cx.fill(panah.panah)
+						cx.restore()
+						//kotak motif
+						cx.strokeStyle = 'pink'
+						cx.lineWidth = 5
+						cx.strokeRect(99,-811,222,133,)
+						//oval sikon
+						cx.beginPath()
+						cx.strokeStyle = 'yellow'
+						cx.ellipse(-555,-744,111,55,0,0,359.99,)
+						cx.stroke()
+						return
+					}else if(
+						(batasframe[7] < frame) &&
+						(frame <= batasframe[8])
+					){
+						cx.fillStyle = ru.rgba(0,Math.random()*111+144,0,1,)
+						cx.textAlign ='center'
+						cx.font = '5px Impact'
+						cx.fillText('3 MOTIVE SOSIAL',0,-805,)
+						cx.fillStyle = '#00ff00'
+						cx.font = '5px Consolas'
+						cx.fillText('PROF. DR. DAVID C. McCLELLAND',0,-800,)
+						cx.textAlign = 'left'
+						cx.font = '3px Impact'
+						cx.fillStyle = 'cyan'
+						cx.fillText('MANUSIA :'	,-44,-777,)
+						cx.font = '3px Consolas'
+						cx.fillText('MAKHLUK BIOLOGIS'	,-22,-777-3,)
+						cx.fillText('MAKHLUK SOSIAL'	,-22,-777+3,)
+						cx.font = '3px Comic Sans MS'
+						cx.fillStyle = 'orange'
+						cx.fillText('LINGKUNGAN'	,22,-777,)
+						cx.font = '3px Arial'
+						cx.fillStyle = 'white'
+						let y = 14
+						cx.fillText('KEKUATAN MASING-MASING MOTIVE PADA SESEORANG'	,-44,-777+(y += 4),)
+						cx.fillText('TIDAKLAH SAMA, JUGA MOTIVE ORANG YANG SATU'	,-44,-777+(y += 4),)
+						cx.fillText('BERBEDA DENGAN MOTIVE ORANG YANG LAIN'	,-44,-777+(y += 4),)
+						//kotak
+						cx.strokeStyle = 'blue'
+						cx.lineWidth = .8
+						cx.strokeRect(17,-777-11,30,20,)
+						cx.strokeStyle = 'yellow'
+						cx.lineWidth = .4
+						cx.beginPath()
+						cx.save()
+							cx.transform(0,-.5,-.8,0,-25,-777-1,)
+							cx.stroke(panah.panah)
+						cx.restore()
+						return
+					}else if(
+						(batasframe[8] < frame) &&
+						(frame <= batasframe[9])
+					){
+						cx.fillStyle = 'white'
+						cx.font = '.07px Consolas'
+						cx.textAlign = 'center'
+						cx.fillText('TERIMA KASIH',0,-771.8,)
+						/*
 						for(let naA = 0;naA < 7;naA++){
 							cx.fillRect(
 								0	+mop*(Math.random()-.5)	,
 								-777	+mot*(Math.random()-.5)	,
 							11,11,)
 						}
+						*/
 						return
 					}
 					//border
@@ -617,7 +791,7 @@ let mo = motif
 						m2d.translate(m,matide,[
 							-333	,
 							-9600+(frame-batasframe[4])*155,
-						],)//sampe sini, bikin slideb
+						],)
 						m2d.scale(m,m,[5.5,5.5,],)
 					}
 				break
@@ -909,7 +1083,10 @@ let mo = motif
 	}
 	
 	let fasteroid = (e,o,dt,)=>{
-		if(frame < batasframe[2]+300){return}
+		if(
+			(batasframe[7] < frame) ||
+			(frame < batasframe[2]+300)
+		){return}
 		switch(e){
 			case 'hitung0':
 				let m = o.matlok
@@ -949,6 +1126,43 @@ let mo = motif
 		mousex = e.x
 		mousey = e.y
 	},)
+	let fbintang = (e,o,dt,)=>{
+		// bintang kelilingi m87
+		switch(e){
+			case 'hitung0':
+				let sin = Math.sin
+				o.t += dt*4.13/22/o.j**2
+				o.x = (1.3-sin(sin(o.t)**4+.1))*.5*o.j
+				let m = o.matlok
+				m2d.rotate(m,m,dt/22/o.x**2,)
+			break
+			case 'tampil':
+				let rini = (o.j > 111)?22:5
+				let grd = cx.fillStyle = cx.createRadialGradient(
+					o.x	,0	,0	,
+					o.x	,0	,rini	,
+				)
+				grd.addColorStop(0,'white',)
+				grd.addColorStop(.07,'#ffffffaa',)
+				grd.addColorStop(.15,'#ffffff22',)
+				grd.addColorStop(1,'#ffffff00',)
+				cx.beginPath()
+				cx.ellipse(o.x,0,rini,rini,0,0,359.99,)
+				cx.fill()
+			break
+		}
+	}
+	for(let naA = 0;naA <44;naA++){
+		let bintang = bikinobj('bintang'+naA,fbintang)
+		chi(galaksi,bintang,)
+		
+		bintang.t = 0
+		bintang.x
+		bintang.j = Math.random()*222+4//jarak
+		m = bintang.matlok
+		m2d.translate(m,m,[2664,-771.8,],)
+		m2d.rotate(m,m,Math.random()*4,)
+	}
 	
 	alert(`
 Klik untuk lanjutkan animasi
